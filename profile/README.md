@@ -25,4 +25,5 @@ We engineer resilient, edge-first distributed systems, high-throughput microserv
 ### ◆ Network & Ecosystem
 
 - **Domain** — [529studio.site](https://529studio.site)
+- **Contact** — [contact@529studio.site](mailto:contact@529studio.site)
 - **Architecture** — Edge-proxied by Cloudflare & protected by Zero Trust Access.
