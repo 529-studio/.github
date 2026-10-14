@@ -1,0 +1,50 @@
+title = "529-studio Centralized Base Gitleaks Config"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "telegram-bot-token"
+description = "Telegram Bot API Token"
+regex = '''\b\d{9,10}:[A-Za-z0-9_-]{35}\b'''
+keywords = [":aa"]
+
+[[rules]]
+id = "google-gemini-api-key"
+description = "Google Gemini / GCP API Key"
+regex = '''\bAIzaSy[A-Za-z0-9_-]{33}\b'''
+keywords = ["aizasy"]
+
+[[rules]]
+id = "n8n-529s-alert-key"
+description = "n8n Centralized Alert Key for 529-studio"
+regex = '''\bak_live_529s_[a-f0-9]{16}\b'''
+keywords = ["ak_live_529s_"]
+
+[[rules]]
+id = "cloudflare-r2-scoped-token"
+description = "Cloudflare R2 / API 32-char Hex Key (Context-bound)"
+regex = '''(?i)(?:cloudflare|r2|cf)[_a-z0-9-]*[\s:="']+([a-f0-9]{32})\b'''
+secretGroup = 1
+keywords = ["cloudflare", "r2", "cf"]
+
+[allowlist]
+description = "Global 529-studio Allowlist for Placeholders and Mock Files"
+regexTarget = "match"
+regexes = [
+  '''(?i)<placeholder>''',
+  '''(?i)<your_[a-z0-9_]+_here>''',
+  '''(?i)YOUR_[A-Z0-9_]+_HERE''',
+  '''\*\*\*REDACTED\*\*\*''',
+  '''(?i)example[_-]?key[_-]?[0-9a-z]*'''
+]
+paths = [
+  '''(^|/)tests/mocks/.*''',
+  '''\.example\.json$''',
+  '''(^|/)\.env\.example$''',
+  '''(^|/)\.env\.template$''',
+  '''(^|/)pnpm-lock\.yaml$''',
+  '''(^|/)package-lock\.json$''',
+  '''(^|/)poetry\.lock$''',
+  '''(^|/)uv\.lock$'''
+]
